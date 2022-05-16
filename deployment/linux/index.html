@@ -429,7 +429,7 @@
         
           <li class="md-nav__item">
   <a href="#miniconda" class="md-nav__link">
-    使用 Miniconda
+    使用 MiniConda
   </a>
   
 </li>
@@ -875,7 +875,7 @@
         
           <li class="md-nav__item">
   <a href="#miniconda" class="md-nav__link">
-    使用 Miniconda
+    使用 MiniConda
   </a>
   
 </li>
@@ -1007,6 +1007,7 @@
 <h3 id="mcl-installer">使用 <a href="https://github.com/iTXTech/mcl-installer">mcl-installer</a> 进行安装（小白友好）</h3>
 <p><div class="highlight"><pre><span></span><code>$ cd 你想要安装 iTXTech MCL 的目录
 $ curl -LJO https://github.com/iTXTech/mcl-installer/releases/download/v1.0.4/mcl-installer-1.0.4-linux-amd64 # 如果是macOS，就将链接中的 linux 修改为 macos
+$ 若链接不上或速度过低可使用代理站: curl -LJO https://ghproxy.com/github.com/iTXTech/mcl-installer/releases/download/v1.0.4/mcl-installer-1.0.4-linux-amd64
 $ chmod +x mcl-installer-1.0.4-linux-amd64
 $ ./mcl-installer-1.0.4-linux-amd64
 </code></pre></div>
@@ -1022,6 +1023,13 @@ Checking existing Java installation.
 Would you like to install Java? (Y/N, default: Y)
 </code></pre></div>
 <p>一路回车即可（也可以按照自己情况进行修改）</p>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p>若你在运行 <code>./mcl-installer-1.0.4-linux-amd64</code> 时出现如下报错：</p>
+<p><code>./mcl-installer-1.0.4-linux-amd64: /lib/x86_64-linux-gnu/libc.so.6: version GLIBC_2.28 not found (required by ./mcl-installer-1.0.4-linux-amd64)</code></p>
+<p>请查看 <a href="https://github.com/iTXTech/mcl-installer/issues/35">mcl-installer #35</a></p>
+<p>使用命令 <code>curl -LJO https://ghproxy.com/github.com/iTXTech/mcl-installer/releases/download/f7ee211/mcl-installer-f7ee211-linux-amd64-musl</code></p>
+</div>
 <ul>
 <li>随后运行 <code>./mcl</code>，你应当见到如下输出：</li>
 </ul>
@@ -1140,7 +1148,7 @@ url:http://xxx.xxx.xxx
 </li>
 </ul>
 <h2 id="python">安装python</h2>
-<h3 id="miniconda">使用 Miniconda</h3>
+<h3 id="miniconda">使用 MiniConda</h3>
 <ul>
 <li>下载安装包，在终端里输入 <code>wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh</code></li>
 <li>下载完成后，在终端里输入 <code>chmod 777 Miniconda3-latest-Linux-x86_64.sh</code> ，赋予安装包权限</li>
@@ -1169,6 +1177,7 @@ url:http://xxx.xxx.xxx
 <li>输入 <code>git clone https://github.com/SAGIRI-kawaii/sagiri-bot.git</code></li>
 <li>等待下载完成</li>
 <li>什么？你问我太慢怎么办？我的建议是，找一台可以快速链接 <code>github</code> 的机器下载再传过来</li>
+<li>或者你可以使用代理站：<code>git clone https://ghproxy.com/github.com/SAGIRI-kawaii/sagiri-bot.git</code></li>
 </ul>
 <h2 id="python_1">配置python环境</h2>
 <h3 id="anaconda">使用 anaconda</h3>

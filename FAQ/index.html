@@ -606,6 +606,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#libx86_64-linux-gnulibcso6-version-glibc_228-not-found" class="md-nav__link">
+    /lib/x86_64-linux-gnu/libc.so.6: version GLIBC_2.28 not found
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     下载速度问题
   </a>
@@ -773,6 +780,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#libx86_64-linux-gnulibcso6-version-glibc_228-not-found" class="md-nav__link">
+    /lib/x86_64-linux-gnu/libc.so.6: version GLIBC_2.28 not found
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     下载速度问题
   </a>
@@ -865,6 +879,7 @@
 - 将 <code>python/Scripts</code> 目录加入环境变量</p>
 <blockquote>
 <h2 id="failed-cant-locate-revision-identified-by-xxx">FAILED: Can't locate revision identified by 'xxx'</h2>
+</blockquote>
 <p>若出现以下信息：
 <div class="highlight"><pre><span></span><code>INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
@@ -875,7 +890,6 @@ INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
 ERROR [alembic.util.messaging] Can&#39;t locate revision identified by &#39;xxx&#39;
   FAILED: Can&#39;t locate revision identified by &#39;xxx&#39;
 </code></pre></div></p>
-</blockquote>
 <ul>
 <li>打开bot目录下的 <code>alembic</code> 文件夹，将其中 <code>versions</code> 清空（保留空文件夹）</li>
 <li>打开数据库，删除名为 <code>alembic_version</code> 的数据表</li>
@@ -917,7 +931,10 @@ ERROR [alembic.util.messaging] Can&#39;t locate revision identified by &#39;xxx&
 <blockquote>
 <h2 id="exception-in-thread-defaultdispatcher-worker-2">Exception in thread "DefaultDispatcher-worker-2"...</h2>
 </blockquote>
-<p>检查 <code>mirai-api-http</code> 版本，若为 <code>2.5.0+</code> 请降级为 <code>2.4.0</code></p>
+<ul>
+<li>方法一：检查 <code>mirai-api-http</code> 版本，若为 <code>2.5.0+</code> 请降级为 <code>2.4.0</code></li>
+<li>方法二：检查 <code>mirai-api-http</code> 版本，若为 <code>2.5.0+</code> 并且 <code>mirai</code> 版本低于 <code>2.11</code>，请将 <code>mirai</code> 升级到 <code>2.11+</code></li>
+</ul>
 <blockquote>
 <h2 id="javalangnosuchmethoderror-void-kotlinxserializationinternalobjectserializer">java.lang.NoSuchMethodError: void kotlinx.serialization.internal.ObjectSerializer...</h2>
 </blockquote>
@@ -932,6 +949,12 @@ ERROR [alembic.util.messaging] Can&#39;t locate revision identified by &#39;xxx&
 <h2 id="command-python-not-found">command "python" not found</h2>
 </blockquote>
 <p><font color="red">Are you serious?</font></p>
+<blockquote>
+<h2 id="libx86_64-linux-gnulibcso6-version-glibc_228-not-found">/lib/x86_64-linux-gnu/libc.so.6: version GLIBC_2.28 not found</h2>
+</blockquote>
+<p><font color="red">说明你没有认真看文档！</font></p>
+<p>查看 <a href="https://github.com/iTXTech/mcl-installer/issues/35">mcl-installer #35</a></p>
+<p>使用命令 <code>curl -LJO https://ghproxy.com/github.com/iTXTech/mcl-installer/releases/download/f7ee211/mcl-installer-f7ee211-linux-amd64-musl</code></p>
 <blockquote>
 <h2 id="_3">下载速度问题</h2>
 </blockquote>
