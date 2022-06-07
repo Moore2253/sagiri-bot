@@ -52,21 +52,15 @@ async def system_status(app: Ariadne, group: Group, system: ArgResult, info: Arg
         "CPU相关: \n"
         f"    CPU物理核心数: {psutil.cpu_count(logical=False)}\n"
         f"    CPU总体占用: {psutil.cpu_percent()}%\n"
-        f"    CPU频率: {round(psutil.cpu_freq().current / 1000, 2)}GHz"
+        f"    CPU频率: {round(psutil.cpu_freq().current, 2)}GHz"
     )
     gb = 1024 ** 3 #GB == gigabyte 
     total_b, used_b, free_b = shutil.disk_usage('/')
-    total_b1, used_b1, free_b1 = shutil.disk_usage('/home')
     disk_message = MessageChain(
         "磁盘相关: \n"
-        f"    /: \n" 
-        f"    分区总大小: {round(total_b / gb, 2)}GB\n"
-        f"    分区使用量: {round(used_b / gb, 2)}GB ({round(used_b / total_b * 100, 2)}%)\n"
-        f"    分区空闲量: {round(free_b / gb, 2)}GB ({round(free_b / total_b * 100, 2)}%)\n"
-        f"    /home: \n" 
-        f"    分区总大小: {round(total_b1 / gb, 2)}GB\n"
-        f"    分区使用量: {round(used_b1 / gb, 2)}GB ({round(used_b1 / total_b1 * 100, 2)}%)\n"
-        f"    分区空闲量: {round(free_b1 / gb, 2)}GB ({round(free_b1 / total_b1 * 100, 2)}%)"
+        f"    磁盘总大小: {round(total_b / gb, 2)}GB\n"
+        f"    磁盘使用量: {round(used_b / gb, 2)}GB ({round(used_b / total_b * 100, 2)}%)\n"
+        f"    磁盘空闲量: {round(free_b / gb, 2)}GB ({round(free_b / total_b * 100, 2)}%)\n"
     )
     #    "    图库占用空间: \n        " +
     #    '\n        '.join([*[f"{path_name}: {round(sum([os.path.getsize(path + file) for file in os.listdir(path)]) / (1024 ** 3), 2)}GB" if os.path.exists(path) else f"{path_name}: 路径不存在" for path_name, path in image_path.items()]])
@@ -78,7 +72,7 @@ async def system_status(app: Ariadne, group: Group, system: ArgResult, info: Arg
         ret_power_connected = '正在放电'
     battery_message = MessageChain(
         "电池相关: \n" +
-        f"    电池电量: {battery_power_power}%\n"
+        f"    电池电量: {round(battery_power_power, 2)}%\n"
         f"    充电状态: {ret_power_connected}"
     )
     if info.matched or (not system.matched and not disk.matched and not memory.matched and not cpu.matched and not battery.matched):
