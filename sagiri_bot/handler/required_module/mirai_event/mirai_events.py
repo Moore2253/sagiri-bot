@@ -36,17 +36,17 @@ async def member_join_event(app: Ariadne, group: Group, event: MemberJoinEvent):
         pass
 
 
-# async def member_leave_event_quit(app: Ariadne, group: Group, event: MemberLeaveEventQuit):
-#     try:
-#         if not await group_setting.get_setting(group, Setting.switch):
-#             return None
-#         await app.sendMessage(
-#             event.member.group, MessageChain.create([
-#                 Plain(text=f"{event.member.name}怎么走了呐~是因为偷袭了69岁的老同志吗嘤嘤嘤")
-#             ])
-#         )
-#     except AccountMuted:
-#         pass
+async def member_leave_event_quit(app: Ariadne, group: Group, event: MemberLeaveEventQuit):
+     try:
+         if not await group_setting.get_setting(group, Setting.switch):
+             return None
+         await app.sendMessage(
+             event.member.group, MessageChain.create([
+                 Plain(text=f"{event.member.name}怎么走了呐~ 那只好说拜拜啦~")
+             ])
+         )
+     except AccountMuted:
+         pass
 
 
 async def member_mute_event(app: Ariadne, group: Group, event: MemberMuteEvent):
@@ -68,7 +68,7 @@ async def member_mute_event(app: Ariadne, group: Group, event: MemberMuteEvent):
                     event.member.group, MessageChain.create([
                         Plain(text="哦~看看是谁被关进小黑屋了？\n"),
                         Plain(
-                            text=f"哦我的上帝啊~是{event.member.name}！他将在小黑屋里呆{'%d天%02d小时%02d分钟%02d秒' % (d, h, m, s)}哦~"
+                            text=f"原来是{event.member.name}呀！他将在小黑屋里呆{'%d天%02d小时%02d分钟%02d秒' % (d, h, m, s)}哦~"
                         )
                     ])
                 )
@@ -95,7 +95,7 @@ async def member_leave_event_kick(app: Ariadne, group: Group, event: MemberLeave
             return None
         await app.sendMessage(
             event.member.group, MessageChain.create([
-                Plain(text=f"<{event.member.name}> 被 <{event.operator.name}> 🐏辣~")
+                Plain(text=f"啊哦！<{event.member.name}> 被 <{event.operator.name}> 踢出了群聊~")
             ])
         )
     except AccountMuted:
@@ -108,7 +108,7 @@ async def member_special_title_change_event(app: Ariadne, group: Group, event: M
             return None
         await app.sendMessage(
             event.member.group, MessageChain.create([
-                Plain(text="啊嘞嘞？%s的群头衔从%s变成%s了呐~" % (event.member.name, event.origin, event.current))
+                Plain(text="恭喜呀，%s的群头衔从%s变成%s了呐~" % (event.member.name, event.origin, event.current))
             ])
         )
     except AccountMuted:
@@ -275,23 +275,23 @@ async def bot_invited_join_group_request_event(app: Ariadne, event: BotInvitedJo
         )
 
 
-async def group_recall_event(app: Ariadne, group: Group, event: GroupRecallEvent):
-    if not await group_setting.get_setting(group, Setting.switch):
-        return None
-    if await group_setting.get_setting(event.group.id, Setting.anti_revoke) and event.authorId != config.bot_qq:
-        try:
-            msg = await app.getMessageFromId(event.messageId)
-            revoked_msg = msg.messageChain.asSendable()
-            author_member = await app.getMember(event.group.id, event.authorId)
-            author_name = "自己" if event.operator.id == event.authorId else author_member.name
-            resend_msg = MessageChain.create([Plain(text=f"{event.operator.name}偷偷撤回了{author_name}的一条消息哦：\n\n")]) \
-                .extend(revoked_msg)
-            await app.sendMessage(
-                event.group,
-                resend_msg.asSendable()
-            )
-        except (AccountMuted, UnknownTarget):
-            pass
+#async def group_recall_event(app: Ariadne, group: Group, event: GroupRecallEvent):
+#    if not await group_setting.get_setting(group, Setting.switch):
+#        return None
+#    if await group_setting.get_setting(event.group.id, Setting.anti_revoke) and event.authorId != config.bot_qq:
+#        try:
+#           msg = await app.getMessageFromId(event.messageId)
+#            revoked_msg = msg.messageChain.asSendable()
+#           author_member = await app.getMember(event.group.id, event.authorId)
+#           author_name = "自己" if event.operator.id == event.authorId else author_member.name
+#           resend_msg = MessageChain.create([Plain(text=f"{event.operator.name}偷偷撤回了{author_name}的一条消息哦：\n\n")]) \
+#               .extend(revoked_msg)
+#           await app.sendMessage(
+#               event.group,
+#               resend_msg.asSendable()
+#           )
+#       except (AccountMuted, UnknownTarget):
+#           pass
 
 
 async def bot_join_group_event(app: Ariadne, group: Group):
@@ -395,7 +395,7 @@ async def nudge_event(app: Ariadne, event: NudgeEvent):
                                 await app.sendNudge(member)
                                 await app.sendMessage(
                                     member.group, MessageChain.create([
-                                        Plain(text="你真的很有耐心欸。")
+                                        Plain(text="你真的很有耐心唉~")
                                     ])
                                 )
                             except:
